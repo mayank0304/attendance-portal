@@ -37,7 +37,7 @@ class Auth extends BaseController
 
         if ($user) {
             session()->set('user_id', $user['id']);
-            return redirect()->to('/attendance');
+            return redirect()->to('/students');
         } else {
             // Handle login failure
             return redirect()->to('/')->with('error', 'Invalid email or password');

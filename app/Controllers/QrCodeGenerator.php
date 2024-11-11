@@ -39,4 +39,30 @@ class QrCodeGenerator extends BaseController
 
         return redirect()->to("/students");
     }
+
+     // Add a new method to allow downloading the QR code PNG
+     public function downloadQrCode($studentId)
+     {
+         // Load the StudentModel
+         $studentModel = new StudentModel();
+         $student = $studentModel->find($studentId);
+ 
+         if ($student && isset($student['crn'])) {
+             // Generate the QR code data
+             $qrData = "crn:{$student['crn']}";
+             $qrCode = new QrCode($qrData);
+ 
+             // Use PngWriter to generate the PNG
+             $writer = new PngWriter();
+             $result = $writer->write($qrCode);
+ 
+             // Set the correct headers to download the image
+             return $this->response->setHeader('Content-Type', 'image/png')
+                                    ->setHeader('Content-Disposition', 'attachment; filename="qr_code.png"')
+                                    ->setBody($result->getString());
+         }
+ 
+         // Handle the case when the student is not found
+         return redirect()->to("/students")->with('error', 'Student not found!');
+     }
 }

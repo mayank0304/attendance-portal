@@ -15,7 +15,7 @@
                 <div class="row shadow-lg p-2">
                     <div class="col-12 col-lg-5 col-md-12 d-flex align-items-center justify-content-center"
                         style="background-color: #002244;">
-                        <h2 class="text-center text-light m-md-3">Text-Editor</h2>
+                        <h2 class="text-center text-light m-md-3">Attendance</h2>
                     </div>
                     <div class="col-12 col-lg-7 col-md-12 p-4 bg-light">
                         <!-- Error message display -->
